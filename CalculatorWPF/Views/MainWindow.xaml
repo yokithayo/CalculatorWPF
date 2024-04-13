@@ -1,0 +1,237 @@
+﻿<Window x:Class="CalculatorWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:vm="clr-namespace:CalculatorWPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Calculator" 
+        Height="525" Width="325"
+        MinHeight="525" MinWidth="325"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <Grid Background="#262626">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.30*"/>
+            <RowDefinition Height="0.55*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--#region TitleBar-->
+        <WrapPanel Margin="12,5,5,0">
+            <TextBlock Grid.Column="0"
+                       FontSize="12"
+                       FontWeight="Bold"
+                       Text="Calculator"
+                       Foreground="White"/>
+        </WrapPanel>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Grid.Column="4">
+            <Button x:Name="btnHide"
+                    Command="{Binding MinimizeWindowCommand}"
+                    Style="{StaticResource TitleButton}"
+                    Content="—"/>
+            <Button x:Name="btnMax"
+                    Command="{Binding MaximizeWindowCommand}"
+                    Style="{StaticResource TitleButton}"
+                    Content="🗖"/>
+            <Button x:Name="btnClose"
+                    Command="{Binding CloseWindowCommand}"
+                    Style="{StaticResource TitleButton}"
+                    Content="X"/>
+        </StackPanel>
+        <!--endregion-->
+        <!--#region DisplayTextBlock & ExpressionLabel -->
+        <DockPanel Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="4"
+                   Background="#1F2020">
+            <Label x:Name="Expression"
+                     DockPanel.Dock="Top"
+                     Content="{Binding Path=Expression}"
+                     Style="{StaticResource ExpressionLabel}"/>
+        </DockPanel>
+        <DockPanel Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="4"
+                   Background="#1F2020">
+            <TextBlock x:Name="Display"
+                     DockPanel.Dock="Bottom"
+                     Text="{Binding Path=Display}"
+                     Style="{StaticResource DisplayTextBox}"/>
+        </DockPanel>
+        <!--endregion-->
+        <!--#region Panel Button -->
+        <Button x:Name="btnRowDelete" 
+                Content="C"
+                Command="{Binding DeleteButtonCommand}"
+                CommandParameter="C"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="3"
+                Grid.Column="2"/>
+
+        <Button x:Name="btnCharDelete" 
+                Content="⌫"
+                Command="{Binding DeleteButtonCommand}"
+                CommandParameter="⌫"
+                Style="{StaticResource PanelButton}"        
+                Grid.Row="3"
+                Grid.Column="3"/>
+
+        <Button x:Name="btn7" 
+                Content="7"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="7"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="4"
+                Grid.Column="0"/>
+
+        <Button x:Name="btn8" 
+                Content="8"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="8"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="4"
+                Grid.Column="1"/>
+
+        <Button x:Name="btn9" 
+                Content="9"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="9"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="4"
+                Grid.Column="2"/>
+
+        <Button x:Name="btn4" 
+                Content="4"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="4"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="5"
+                Grid.Column="0"/>
+
+        <Button x:Name="btn5" 
+                Content="5"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="5"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="5"
+                Grid.Column="1"/>
+
+        <Button x:Name="btn6"
+                Content="6"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="6"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="5"
+                Grid.Column="2"/>
+
+        <Button x:Name="btn1" 
+                Content="1"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="1"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="6"
+                Grid.Column="0"/>
+
+        <Button x:Name="btn2" 
+                Content="2"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="2"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="6"
+                Grid.Column="1"/>
+
+        <Button x:Name="btn3" 
+                Content="3"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="3"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="6"
+                Grid.Column="2"/>
+
+        <Button x:Name="btn0" 
+                Content="0"
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="0"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="7"
+                Grid.Column="1"/>
+
+        <Button x:Name="btnPoint" 
+                Content="."
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="."
+                Style="{StaticResource PanelButton}"
+                Grid.Row="7"
+                Grid.Column="2"/>
+
+        <Button x:Name="btnMultiply" 
+                Content="×"
+                Command="{Binding OperationButtonCommand}"
+                CommandParameter="×"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="3"
+                Grid.Column="0"/>
+
+        <Button x:Name="btnDivide" 
+               Content="÷"
+               Command="{Binding OperationButtonCommand}"
+               CommandParameter="÷"
+               Style="{StaticResource PanelButton}"
+               Grid.Row="3"
+               Grid.Column="1"/>
+
+        <Button x:Name="btnMinus" 
+                Content="-"
+                Command="{Binding OperationButtonCommand}"
+                CommandParameter="-"
+                Style="{StaticResource PanelButton}" 
+                Grid.Row="4"
+                Grid.Column="3"/>
+
+        <Button x:Name="btnPlus" 
+               Content="+" 
+               Command="{Binding OperationButtonCommand}"
+               CommandParameter="+"
+               Style="{StaticResource PanelButton}"
+               Grid.Row="5"
+               Grid.Column="3"/>
+
+        <Button x:Name="btnEquals" 
+                Content="=" 
+                Command="{Binding OperationButtonCommand}"
+                CommandParameter="="
+                Style="{StaticResource PanelButton}"
+                Grid.Row="6"
+                Grid.RowSpan="2"
+                Grid.Column="3"/>
+
+        <Button x:Name="btnPlucOrMinus" 
+                Content="+/-" 
+                Command="{Binding NumButtonCommand}"
+                CommandParameter="+/-"
+                Style="{StaticResource PanelButton}"
+                Grid.Row="7"
+                Grid.Column="0"/>
+        <!--#endregion-->
+    </Grid>
+</Window>

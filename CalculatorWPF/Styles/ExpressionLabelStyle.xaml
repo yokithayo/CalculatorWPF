@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="ExpressionLabel" TargetType="Label">
+        <Setter Property="Control.Margin" Value="10,15,5,0"/>
+        <Setter Property="Control.Background" Value="#1F2020"/>
+        <Setter Property="Control.Foreground" Value="#5b5b5b"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Control.HorizontalAlignment" Value="Right"/>
+        <Setter Property="Control.FontSize" Value="14"/>
+    </Style>
+</ResourceDictionary>
