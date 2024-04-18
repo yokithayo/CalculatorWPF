@@ -36,7 +36,7 @@ namespace CalculatorWPF.Models
             }
             catch (Exception ex)
             {
-                throw new Exception("Error during calculation", ex);
+                throw new Exception($"{ex.Message}", ex);
             }
         }
     }
